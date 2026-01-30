@@ -1,0 +1,88 @@
+<div class="page-width" style="margin-top: 30px; margin-bottom: 30px;">
+  {% if section.settings.title != blank %}
+    <h2 style="text-align: center; margin-bottom: 20px; font-size: 1.5rem; text-transform: uppercase;">{{ section.settings.title }}</h2>
+  {% endif %}
+
+  <div class="categorias-grid" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+    {% for block in section.blocks %}
+      <a href="{{ block.settings.link }}" style="text-decoration: none; color: #000; text-align: center; width: 100px;">
+        <div class="categoria-circle" style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 2px solid #e2e2e2; margin-bottom: 8px; transition: transform 0.3s ease;">
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | img_url: '200x200', crop: 'center' }}" alt="{{ block.settings.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+          {% else %}
+            <div style="width: 100%; height: 100%; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #aaa;">FOTO</div>
+          {% endif %}
+        </div>
+        <span style="font-size: 14px; font-weight: 500; display: block;">{{ block.settings.title }}</span>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .categoria-circle:hover {
+    transform: scale(1.05);
+    border-color: #000;
+  }
+  @media screen and (max-width: 749px) {
+    .categorias-grid {
+      gap: 15px;
+    }
+    .categoria-circle {
+      width: 80px;
+      height: 80px;
+    }
+    .categorias-grid a {
+      width: 80px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Categorias em Círculos",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título da Seção",
+      "default": "Explore por Categorias"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "categoria",
+      "name": "Categoria",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem da Categoria"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nome da Categoria",
+          "default": "Leggings"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link da Categoria"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Categorias em Círculos",
+      "blocks": [
+        { "type": "categoria" },
+        { "type": "categoria" },
+        { "type": "categoria" },
+        { "type": "categoria" }
+      ]
+    }
+  ]
+}
+{% endschema %}
