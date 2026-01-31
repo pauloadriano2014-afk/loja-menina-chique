@@ -1,35 +1,98 @@
-<footer style="background-color: #000; color: #fff; padding: 60px 0 30px; border-top: 1px solid #333;">
-  <div class="page-width" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
-    <div style="flex: 1; min-width: 250px;">
-      <h3 style="color: #fff; text-transform: uppercase; letter-spacing: 2px;">Menina Chique</h3>
-      <p style="font-size: 14px; color: #888; line-height: 1.6;">Moda fitness premium em Mafra - SC. Elevando sua autoestima e performance em cada treino.</p>
+<style>
+  .footer-fitness-container {
+    background-color: #000;
+    color: #fff;
+    padding: 50px 20px; /* Espaço interno: 50px em cima/baixo, 20px nas laterais */
+    width: 100%;
+    box-sizing: border-box; /* Isso impede que o padding "estoure" a largura */
+  }
+
+  .footer-content {
+    max-width: 1200px; /* Limita a largura do texto para não ficar muito esticado em telas gigantes */
+    margin: 0 auto; /* Centraliza o conteúdo */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .footer-column {
+    flex: 1;
+    min-width: 250px; /* Garante que a coluna não fique espremida no celular */
+  }
+
+  .footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .footer-column p, .footer-column a {
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.8;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .footer-column a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid #333;
+    margin-top: 40px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+</style>
+
+<footer class="footer-fitness-container">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>Menina Chique</h3>
+      <p>Moda fitness premium em Mafra - SC. Elevando sua autoestima e performance em cada treino.</p>
     </div>
-    <div style="flex: 1; min-width: 200px;">
-      <h4 style="color: #fff; text-transform: uppercase; font-size: 14px; margin-bottom: 20px;">Atendimento</h4>
-      <p style="font-size: 14px; color: #888; margin-bottom: 10px;">📍 Mafra - SC</p>
-      <a href="{{ section.settings.whatsapp_link }}" style="color: #25D366; text-decoration: none; font-size: 14px;">WhatsApp Oficial</a>
+
+    <div class="footer-column">
+      <h3>Atendimento</h3>
+      <p>📍 Mafra - SC</p>
+      <a href="https://wa.me/5547999999999" target="_blank">💬 WhatsApp Oficial</a>
+      <p>📧 paulo_adriano2014@live.com</p>
     </div>
-    <div style="flex: 1; min-width: 200px;">
-      <h4 style="color: #fff; text-transform: uppercase; font-size: 14px; margin-bottom: 20px;">Siga-nos</h4>
-      <div style="display: flex; gap: 15px;">
-        <a href="{{ section.settings.instagram_link }}" style="color: #fff; text-decoration: none;">Instagram</a>
-        <a href="{{ section.settings.facebook_link }}" style="color: #fff; text-decoration: none;">Facebook</a>
-      </div>
+
+    <div class="footer-column">
+      <h3>Institucional</h3>
+      <a href="/pages/contact">Fale Conosco</a>
+      <a href="/policies/shipping-policy">Política de Envio</a>
+      <a href="/policies/refund-policy">Trocas e Devoluções</a>
     </div>
   </div>
-  <div style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #111; font-size: 11px; color: #555;">
-    &copy; {{ 'now' | date: "%Y" }} Menina Chique Mafra. Desenvolvido por Paulo Adriano.
+
+  <div class="footer-content footer-bottom">
+    <div>© 2026 Menina Chique Mafra. Todos os direitos reservados.</div>
+    <div>Desenvolvido por Paulo Adriano.</div>
   </div>
 </footer>
 
 {% schema %}
 {
   "name": "Rodapé Fitness",
-  "settings": [
-    { "type": "url", "id": "whatsapp_link", "label": "Link WhatsApp" },
-    { "type": "url", "id": "instagram_link", "label": "Link Instagram" },
-    { "type": "url", "id": "facebook_link", "label": "Link Facebook" }
-  ],
-  "presets": [{ "name": "Rodapé Fitness" }]
+  "settings": [],
+  "presets": [
+    {
+      "name": "Rodapé Fitness"
+    }
+  ]
 }
 {% endschema %}
