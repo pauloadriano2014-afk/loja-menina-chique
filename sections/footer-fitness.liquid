@@ -2,14 +2,15 @@
   .footer-fitness-container {
     background-color: #000;
     color: #fff;
-    padding: 50px 20px; /* Espaço interno: 50px em cima/baixo, 20px nas laterais */
+    padding: 50px 20px;
     width: 100%;
-    box-sizing: border-box; /* Isso impede que o padding "estoure" a largura */
+    box-sizing: border-box;
+    overflow-x: hidden; /* Evita rolagem lateral indesejada na página inteira */
   }
 
   .footer-content {
-    max-width: 1200px; /* Limita a largura do texto para não ficar muito esticado em telas gigantes */
-    margin: 0 auto; /* Centraliza o conteúdo */
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -18,7 +19,7 @@
 
   .footer-column {
     flex: 1;
-    min-width: 250px; /* Garante que a coluna não fique espremida no celular */
+    min-width: 250px;
   }
 
   .footer-column h3 {
@@ -39,11 +40,6 @@
     margin-bottom: 10px;
   }
 
-  .footer-column a:hover {
-    color: #fff;
-    text-decoration: underline;
-  }
-
   .footer-bottom {
     border-top: 1px solid #333;
     margin-top: 40px;
@@ -55,44 +51,51 @@
     justify-content: space-between;
     flex-wrap: wrap;
   }
+
+  /* Ajustes Exclusivos para Celular */
+  @media (max-width: 768px) {
+    .footer-fitness-container {
+      padding-bottom: 100px; /* Espaço extra para o botão do WhatsApp não cobrir o texto */
+    }
+    .footer-bottom {
+      flex-direction: column; /* Empilha os textos um embaixo do outro */
+      gap: 15px;
+      justify-content: center;
+    }
+    .footer-column {
+      min-width: 100%; /* Garante que a coluna ocupe a largura toda e não corte */
+      text-align: center; /* Centraliza tudo no celular */
+    }
+  }
 </style>
 
 <footer class="footer-fitness-container">
   <div class="footer-content">
     <div class="footer-column">
       <h3>Menina Chique</h3>
-      <p>Moda fitness premium em Mafra - SC. Elevando sua autoestima e performance em cada treino.</p>
+      <p>Moda fitness premium em Mafra - SC. Elevando sua autoestima.</p>
     </div>
 
     <div class="footer-column">
       <h3>Atendimento</h3>
       <p>📍 Mafra - SC</p>
-      <a href="https://wa.me/5547999999999" target="_blank">💬 WhatsApp Oficial</a>
+      <a href="https://wa.me/5547999999999">💬 WhatsApp Oficial</a>
       <p>📧 paulo_adriano2014@live.com</p>
     </div>
 
     <div class="footer-column">
       <h3>Institucional</h3>
-      <a href="/pages/contact">Fale Conosco</a>
-      <a href="/policies/shipping-policy">Política de Envio</a>
-      <a href="/policies/refund-policy">Trocas e Devoluções</a>
+      <a href="#">Política de Envio</a>
+      <a href="#">Trocas e Devoluções</a>
     </div>
   </div>
 
   <div class="footer-content footer-bottom">
-    <div>© 2026 Menina Chique Mafra. Todos os direitos reservados.</div>
-    <div>Desenvolvido por Paulo Adriano.</div>
+    <div>© 2026 Menina Chique Mafra.</div>
+    <div style="opacity: 0.7;">Desenvolvido por Paulo Adriano.</div>
   </div>
 </footer>
 
 {% schema %}
-{
-  "name": "Rodapé Fitness",
-  "settings": [],
-  "presets": [
-    {
-      "name": "Rodapé Fitness"
-    }
-  ]
-}
+{ "name": "Rodapé Fitness", "presets": [{ "name": "Rodapé Fitness" }] }
 {% endschema %}

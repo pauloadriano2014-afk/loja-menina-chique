@@ -23,6 +23,7 @@
     },
     "collections_WBJRrK": {
       "type": "collections",
+      "disabled": true,
       "name": "Coleções",
       "settings": {
         "grid_item_width": "collections--full",
@@ -40,6 +41,17 @@
     },
     "main": {
       "type": "hello-world",
+      "disabled": true,
+      "settings": {}
+    },
+    "tabela_medidas_GfGK9W": {
+      "type": "tabela-medidas",
+      "name": "Tabela de Medidas Fitness",
+      "settings": {}
+    },
+    "product_features_aLprQT": {
+      "type": "product-features",
+      "name": "Destaques Técnicos do Produto",
       "settings": {}
     }
   },
@@ -47,6 +59,8 @@
     "banner_fitness_6rCiWy",
     "collections_WBJRrK",
     "produtos_destaque_TeAM9e",
-    "main"
+    "main",
+    "tabela_medidas_GfGK9W",
+    "product_features_aLprQT"
   ]
 }
