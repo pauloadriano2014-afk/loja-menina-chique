@@ -9,13 +9,21 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {}
+    "banner_fitness_6rCiWy": {
+      "type": "banner-fitness",
+      "name": "Banner Fitness Hero",
+      "settings": {
+        "image": "shopify://shop_images/Vestidinhos_leves_cheios_de_charme_e_com_aquele_caimento_perfeito_Tudo_isso_por_R_89_90_3.jpg",
+        "overlay_opacity": 60,
+        "title": "Sua Melhor Versão",
+        "subtitle": "Performance e Estilo",
+        "button_label": "Comprar Agora",
+        "button_link": ""
+      }
     },
     "collections_WBJRrK": {
       "type": "collections",
-      "name": "t:general.collections_grid",
+      "name": "Coleções",
       "settings": {
         "grid_item_width": "collections--full",
         "grid_gap": 10
@@ -26,20 +34,13 @@
       "name": "Produtos em Destaque",
       "settings": {
         "title": "Destaques da Semana",
-        "collection": "",
+        "collection": "frontpage",
         "product_limit": 4
       }
     },
-    "banner_fitness_6rCiWy": {
-      "type": "banner-fitness",
-      "name": "Banner Fitness Hero",
-      "settings": {
-        "overlay_opacity": 40,
-        "title": "Sua Melhor Versão",
-        "subtitle": "Performance e Estilo",
-        "button_label": "Comprar Agora",
-        "button_link": ""
-      }
+    "main": {
+      "type": "hello-world",
+      "settings": {}
     }
   },
   "order": [
