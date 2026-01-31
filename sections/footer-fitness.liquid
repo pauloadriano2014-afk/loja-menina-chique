@@ -1,101 +1,62 @@
 <style>
-  .footer-fitness-container {
+  .footer-full-width {
     background-color: #000;
     color: #fff;
-    padding: 50px 20px;
-    width: 100%;
-    box-sizing: border-box;
-    overflow-x: hidden; /* Evita rolagem lateral indesejada na página inteira */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 60px 0 30px;
+    margin-top: 50px; /* Espaço para separar do conteúdo acima */
   }
-
-  .footer-content {
+  .footer-inner {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 40px;
   }
-
-  .footer-column {
-    flex: 1;
-    min-width: 250px;
-  }
-
-  .footer-column h3 {
-    font-size: 18px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-    color: #fff;
-  }
-
-  .footer-column p, .footer-column a {
-    color: #ccc;
-    font-size: 14px;
-    line-height: 1.8;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 10px;
-  }
-
-  .footer-bottom {
+  .footer-col { flex: 1; min-width: 250px; }
+  .footer-col h3 { font-size: 16px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; color: #fff; }
+  .footer-col a, .footer-col p { display: block; color: #ccc; text-decoration: none; margin-bottom: 10px; font-size: 14px; }
+  .footer-col a:hover { color: #fff; text-decoration: underline; }
+  
+  .copy {
+    text-align: center;
     border-top: 1px solid #333;
     margin-top: 40px;
     padding-top: 20px;
-    text-align: center;
     font-size: 12px;
     color: #666;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-
-  /* Ajustes Exclusivos para Celular */
-  @media (max-width: 768px) {
-    .footer-fitness-container {
-      padding-bottom: 100px; /* Espaço extra para o botão do WhatsApp não cobrir o texto */
-    }
-    .footer-bottom {
-      flex-direction: column; /* Empilha os textos um embaixo do outro */
-      gap: 15px;
-      justify-content: center;
-    }
-    .footer-column {
-      min-width: 100%; /* Garante que a coluna ocupe a largura toda e não corte */
-      text-align: center; /* Centraliza tudo no celular */
-    }
   }
 </style>
 
-<footer class="footer-fitness-container">
-  <div class="footer-content">
-    <div class="footer-column">
+<footer class="footer-full-width">
+  <div class="footer-inner">
+    <div class="footer-col">
       <h3>Menina Chique</h3>
-      <p>Moda fitness premium em Mafra - SC. Elevando sua autoestima.</p>
+      <p>Moda fitness premium em Mafra - SC.</p>
     </div>
-
-    <div class="footer-column">
+    <div class="footer-col">
       <h3>Atendimento</h3>
       <p>📍 Mafra - SC</p>
-      <a href="https://wa.me/5547999999999">💬 WhatsApp Oficial</a>
-      <p>📧 paulo_adriano2014@live.com</p>
+      <a href="#">💬 WhatsApp Oficial</a>
     </div>
-
-    <div class="footer-column">
-      <h3>Institucional</h3>
-      <a href="#">Política de Envio</a>
-      <a href="#">Trocas e Devoluções</a>
+    <div class="footer-col">
+      <h3>Links</h3>
+      <a href="/search">Buscar</a>
+      <a href="/policies/privacy-policy">Política de Privacidade</a>
     </div>
   </div>
-
-  <div class="footer-content footer-bottom">
-    <div>© 2026 Menina Chique Mafra.</div>
-    <div style="opacity: 0.7;">Desenvolvido por Paulo Adriano.</div>
+  <div class="copy">
+    © 2026 Menina Chique Mafra. Desenvolvido por Paulo Adriano.
   </div>
 </footer>
 
 {% schema %}
-{ "name": "Rodapé Fitness", "presets": [{ "name": "Rodapé Fitness" }] }
+{ "name": "Rodapé Full Width", "presets": [{ "name": "Rodapé Full Width" }] }
 {% endschema %}
