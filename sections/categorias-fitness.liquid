@@ -1,8 +1,7 @@
-<div class="page-width" style="margin-top: 30px; margin-bottom: 30px;">
+<div class="page-width" style="margin: 30px auto;">
   {% if section.settings.title != blank %}
     <h2 style="text-align: center; margin-bottom: 20px; font-size: 1.5rem; text-transform: uppercase;">{{ section.settings.title }}</h2>
   {% endif %}
-
   <div class="categorias-grid" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
     {% for block in section.blocks %}
       <a href="{{ block.settings.link }}" style="text-decoration: none; color: #000; text-align: center; width: 100px;">
@@ -19,70 +18,19 @@
   </div>
 </div>
 
-<style>
-  .categoria-circle:hover {
-    transform: scale(1.05);
-    border-color: #000;
-  }
-  @media screen and (max-width: 749px) {
-    .categorias-grid {
-      gap: 15px;
-    }
-    .categoria-circle {
-      width: 80px;
-      height: 80px;
-    }
-    .categorias-grid a {
-      width: 80px;
-    }
-  }
-</style>
-
 {% schema %}
 {
   "name": "Categorias em Círculos",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Título da Seção",
-      "default": "Explore por Categorias"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "categoria",
-      "name": "Categoria",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Imagem da Categoria"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Nome da Categoria",
-          "default": "Leggings"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link da Categoria"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Categorias em Círculos",
-      "blocks": [
-        { "type": "categoria" },
-        { "type": "categoria" },
-        { "type": "categoria" },
-        { "type": "categoria" }
-      ]
-    }
-  ]
+  "settings": [{ "type": "text", "id": "title", "label": "Título", "default": "Explore por Categorias" }],
+  "blocks": [{
+    "type": "categoria",
+    "name": "Categoria",
+    "settings": [
+      { "type": "image_picker", "id": "image", "label": "Imagem" },
+      { "type": "text", "id": "title", "label": "Nome", "default": "Leggings" },
+      { "type": "url", "id": "link", "label": "Link" }
+    ]
+  }],
+  "presets": [{ "name": "Categorias em Círculos" }]
 }
 {% endschema %}

@@ -1,33 +1,23 @@
-<footer style="background-color: #111; color: #fff; padding: 40px 0 20px; margin-top: 50px;">
-  <div class="page-width" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px;">
-    
-    <div style="max-width: 300px;">
-      <h3 style="color: #fff; text-transform: uppercase;">Menina Chique</h3>
-      <p style="font-size: 14px; color: #ccc;">Sua loja de moda fitness em Mafra e região. Qualidade e estilo para o seu treino.</p>
+<footer style="background-color: #000; color: #fff; padding: 60px 0 30px; border-top: 1px solid #333;">
+  <div class="page-width" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
+    <div style="flex: 1; min-width: 250px;">
+      <h3 style="color: #fff; text-transform: uppercase; letter-spacing: 2px;">Menina Chique</h3>
+      <p style="font-size: 14px; color: #888; line-height: 1.6;">Moda fitness premium em Mafra - SC. Elevando sua autoestima e performance em cada treino.</p>
     </div>
-
-    <div>
-      <h4 style="color: #fff; margin-bottom: 15px;">Contato</h4>
-      <p style="font-size: 14px; color: #ccc;">📍 Mafra - SC</p>
-      {% if section.settings.whatsapp_link != blank %}
-        <a href="{{ section.settings.whatsapp_link }}" target="_blank" style="color: #25D366; text-decoration: none; font-size: 14px; font-weight: bold;">
-          💬 WhatsApp: Chamar Agora
-        </a>
-      {% endif %}
+    <div style="flex: 1; min-width: 200px;">
+      <h4 style="color: #fff; text-transform: uppercase; font-size: 14px; margin-bottom: 20px;">Atendimento</h4>
+      <p style="font-size: 14px; color: #888; margin-bottom: 10px;">📍 Mafra - SC</p>
+      <a href="{{ section.settings.whatsapp_link }}" style="color: #25D366; text-decoration: none; font-size: 14px;">WhatsApp Oficial</a>
     </div>
-
-    <div>
-      <h4 style="color: #fff; margin-bottom: 15px;">Redes Sociais</h4>
-      {% if section.settings.instagram_link != blank %}
-        <a href="{{ section.settings.instagram_link }}" target="_blank" style="color: #ccc; text-decoration: none; display: block; margin-bottom: 10px;">Instagram</a>
-      {% endif %}
-      {% if section.settings.facebook_link != blank %}
-        <a href="{{ section.settings.facebook_link }}" target="_blank" style="color: #ccc; text-decoration: none;">Facebook</a>
-      {% endif %}
+    <div style="flex: 1; min-width: 200px;">
+      <h4 style="color: #fff; text-transform: uppercase; font-size: 14px; margin-bottom: 20px;">Siga-nos</h4>
+      <div style="display: flex; gap: 15px;">
+        <a href="{{ section.settings.instagram_link }}" style="color: #fff; text-decoration: none;">Instagram</a>
+        <a href="{{ section.settings.facebook_link }}" style="color: #fff; text-decoration: none;">Facebook</a>
+      </div>
     </div>
-
   </div>
-  <div style="text-align: center; border-top: 1px solid #333; margin-top: 30px; padding-top: 20px; font-size: 12px; color: #777;">
+  <div style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #111; font-size: 11px; color: #555;">
     &copy; {{ 'now' | date: "%Y" }} Menina Chique Mafra. Desenvolvido por Paulo Adriano.
   </div>
 </footer>
@@ -36,26 +26,10 @@
 {
   "name": "Rodapé Fitness",
   "settings": [
-    {
-      "type": "url",
-      "id": "whatsapp_link",
-      "label": "Link do WhatsApp (api.whatsapp.com/send?phone=...)"
-    },
-    {
-      "type": "url",
-      "id": "instagram_link",
-      "label": "Link do Instagram"
-    },
-    {
-      "type": "url",
-      "id": "facebook_link",
-      "label": "Link do Facebook"
-    }
+    { "type": "url", "id": "whatsapp_link", "label": "Link WhatsApp" },
+    { "type": "url", "id": "instagram_link", "label": "Link Instagram" },
+    { "type": "url", "id": "facebook_link", "label": "Link Facebook" }
   ],
-  "presets": [
-    {
-      "name": "Rodapé Fitness"
-    }
-  ]
+  "presets": [{ "name": "Rodapé Fitness" }]
 }
 {% endschema %}

@@ -1,17 +1,14 @@
-<div class="banner-fitness-wrapper" style="position: relative; width: 100%; height: 60vh; min-height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-  
+<div class="banner-fitness-wrapper" style="position: relative; width: 100%; height: 80vh; min-height: 500px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-top: -80px;">
   {% if section.settings.image != blank %}
     <img src="{{ section.settings.image | img_url: '1800x' }}" alt="{{ section.settings.image.alt }}" style="position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: 1;">
   {% else %}
-    <div style="position: absolute; width: 100%; height: 100%; background: #ccc; z-index: 1;"></div>
+    <div style="position: absolute; width: 100%; height: 100%; background: #222; z-index: 1;"></div>
   {% endif %}
-
   <div class="banner-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0, {{ section.settings.overlay_opacity | divided_by: 100.0 }}); z-index: 2;"></div>
-
   <div class="banner-content" style="position: relative; z-index: 3; text-align: center; color: #fff; padding: 20px; max-width: 800px;">
-    <h1 style="font-size: 3rem; margin-bottom: 10px; text-transform: uppercase; font-weight: bold;">{{ section.settings.title }}</h1>
-    <p style="font-size: 1.2rem; margin-bottom: 20px;">{{ section.settings.subtitle }}</p>
-    <a href="{{ section.settings.button_link }}" style="display: inline-block; padding: 12px 30px; background: #fff; color: #000; text-decoration: none; font-weight: bold; border-radius: 4px; text-transform: uppercase;">
+    <h1 style="font-size: 3.5rem; margin-bottom: 10px; text-transform: uppercase; font-weight: bold; letter-spacing: 2px;">{{ section.settings.title }}</h1>
+    <p style="font-size: 1.4rem; margin-bottom: 30px; opacity: 0.9;">{{ section.settings.subtitle }}</p>
+    <a href="{{ section.settings.button_link }}" style="display: inline-block; padding: 15px 40px; background: #fff; color: #000; text-decoration: none; font-weight: bold; border-radius: 2px; text-transform: uppercase; transition: 0.3s;">
       {{ section.settings.button_label }}
     </a>
   </div>
@@ -21,49 +18,13 @@
 {
   "name": "Banner Fitness Hero",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Imagem de Fundo"
-    },
-    {
-      "type": "range",
-      "id": "overlay_opacity",
-      "min": 0,
-      "max": 90,
-      "step": 10,
-      "unit": "%",
-      "label": "Escurecimento da Foto",
-      "default": 40
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Título Principal",
-      "default": "Sua melhor versão começa aqui"
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtítulo",
-      "default": "Roupas fitness que unem estilo, conforto e performance."
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Texto do Botão",
-      "default": "Ver Coleção"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Link do Botão"
-    }
+    { "type": "image_picker", "id": "image", "label": "Imagem de Fundo" },
+    { "type": "range", "id": "overlay_opacity", "min": 0, "max": 90, "step": 10, "unit": "%", "label": "Escurecimento", "default": 40 },
+    { "type": "text", "id": "title", "label": "Título", "default": "Sua Melhor Versão" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Performance e Estilo" },
+    { "type": "text", "id": "button_label", "label": "Texto Botão", "default": "Comprar Agora" },
+    { "type": "url", "id": "button_link", "label": "Link Botão" }
   ],
-  "presets": [
-    {
-      "name": "Banner Fitness Hero"
-    }
-  ]
+  "presets": [{ "name": "Banner Fitness Hero" }]
 }
 {% endschema %}
