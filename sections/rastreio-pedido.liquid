@@ -1,0 +1,35 @@
+<div class="page-width" style="padding: 60px 0; text-align: center; max-width: 600px; margin: 0 auto;">
+  <h2 style="text-transform: uppercase; letter-spacing: 2px;">Rastrear meu Pedido</h2>
+  <p style="color: #666; margin-bottom: 30px;">Insira seu código de rastreamento enviado por e-mail para acompanhar sua entrega.</p>
+  
+  <div style="background: #f9f9f9; padding: 30px; border-radius: 4px; border: 1px solid #eee;">
+    <input type="text" id="tracking-code" placeholder="Ex: AA123456789BR" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 2px; text-transform: uppercase;">
+    <button onclick="trackOrder()" style="width: 100%; padding: 15px; background: #000; color: #fff; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase;">Acompanhar Entrega</button>
+  </div>
+
+  <div id="msg-erro" style="color: #ff007f; margin-top: 15px; display: none;">Por favor, insira um código de rastreio válido.</div>
+</div>
+
+<script>
+function trackOrder() {
+  const code = document.getElementById('tracking-code').value.trim();
+  const erro = document.getElementById('msg-erro');
+  
+  if(code === "") {
+    erro.style.display = "block";
+    return;
+  }
+  
+  erro.style.display = "none";
+  // Redireciona para o rastreio dos Correios (ou Melhor Envio se você preferir depois)
+  window.open(`https://www.linkcorreios.com.br/${code}`, '_blank');
+}
+</script>
+
+{% schema %}
+{
+  "name": "Rastreio de Pedido",
+  "settings": [],
+  "presets": [{ "name": "Página de Rastreio" }]
+}
+{% endschema %}
