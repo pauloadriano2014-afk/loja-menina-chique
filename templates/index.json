@@ -12,9 +12,40 @@
     "main": {
       "type": "hello-world",
       "settings": {}
+    },
+    "collections_WBJRrK": {
+      "type": "collections",
+      "name": "t:general.collections_grid",
+      "settings": {
+        "grid_item_width": "collections--full",
+        "grid_gap": 10
+      }
+    },
+    "produtos_destaque_TeAM9e": {
+      "type": "produtos-destaque",
+      "name": "Produtos em Destaque",
+      "settings": {
+        "title": "Destaques da Semana",
+        "collection": "",
+        "product_limit": 4
+      }
+    },
+    "banner_fitness_6rCiWy": {
+      "type": "banner-fitness",
+      "name": "Banner Fitness Hero",
+      "settings": {
+        "overlay_opacity": 40,
+        "title": "Sua Melhor Versão",
+        "subtitle": "Performance e Estilo",
+        "button_label": "Comprar Agora",
+        "button_link": ""
+      }
     }
   },
   "order": [
+    "banner_fitness_6rCiWy",
+    "collections_WBJRrK",
+    "produtos_destaque_TeAM9e",
     "main"
   ]
 }

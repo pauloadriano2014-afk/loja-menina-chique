@@ -13,10 +13,18 @@
   "sections": {
     "header": {
       "type": "header",
+      "settings": {
+        "menu": ""
+      }
+    },
+    "barra_beneficios_8igwrd": {
+      "type": "barra-beneficios",
+      "name": "Barra de Benefícios Fitness",
       "settings": {}
     }
   },
   "order": [
-    "header"
-  ],
+    "header",
+    "barra_beneficios_8igwrd"
+  ]
 }

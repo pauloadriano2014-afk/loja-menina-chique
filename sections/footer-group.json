@@ -11,6 +11,25 @@
   "type": "footer",
   "name": "t:general.footer",
   "sections": {
+    "footer_fitness_Ar4iYe": {
+      "type": "footer-fitness",
+      "name": "Rodapé Fitness",
+      "settings": {
+        "whatsapp_link": "",
+        "instagram_link": "",
+        "facebook_link": ""
+      }
+    },
+    "tabela_medidas_nynVCU": {
+      "type": "tabela-medidas",
+      "name": "Tabela de Medidas Fitness",
+      "settings": {}
+    },
+    "product_features_BeRCBi": {
+      "type": "product-features",
+      "name": "Destaques Técnicos do Produto",
+      "settings": {}
+    },
     "footer": {
       "type": "footer",
       "settings": {
@@ -20,6 +39,9 @@
     }
   },
   "order": [
+    "tabela_medidas_nynVCU",
+    "product_features_BeRCBi",
+    "footer_fitness_Ar4iYe",
     "footer"
   ]
 }
