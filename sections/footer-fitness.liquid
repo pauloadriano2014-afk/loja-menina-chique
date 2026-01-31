@@ -9,13 +9,21 @@
     <div>
       <h4 style="color: #fff; margin-bottom: 15px;">Contato</h4>
       <p style="font-size: 14px; color: #ccc;">📍 Mafra - SC</p>
-      <p style="font-size: 14px; color: #ccc;">💬 WhatsApp: (47) 9999-9999</p>
+      {% if section.settings.whatsapp_link != blank %}
+        <a href="{{ section.settings.whatsapp_link }}" target="_blank" style="color: #25D366; text-decoration: none; font-size: 14px; font-weight: bold;">
+          💬 WhatsApp: Chamar Agora
+        </a>
+      {% endif %}
     </div>
 
     <div>
       <h4 style="color: #fff; margin-bottom: 15px;">Redes Sociais</h4>
-      <a href="#" style="color: #ccc; text-decoration: none; display: block; margin-bottom: 10px;">Instagram</a>
-      <a href="#" style="color: #ccc; text-decoration: none;">Facebook</a>
+      {% if section.settings.instagram_link != blank %}
+        <a href="{{ section.settings.instagram_link }}" target="_blank" style="color: #ccc; text-decoration: none; display: block; margin-bottom: 10px;">Instagram</a>
+      {% endif %}
+      {% if section.settings.facebook_link != blank %}
+        <a href="{{ section.settings.facebook_link }}" target="_blank" style="color: #ccc; text-decoration: none;">Facebook</a>
+      {% endif %}
     </div>
 
   </div>
@@ -27,7 +35,23 @@
 {% schema %}
 {
   "name": "Rodapé Fitness",
-  "settings": [],
+  "settings": [
+    {
+      "type": "url",
+      "id": "whatsapp_link",
+      "label": "Link do WhatsApp (api.whatsapp.com/send?phone=...)"
+    },
+    {
+      "type": "url",
+      "id": "instagram_link",
+      "label": "Link do Instagram"
+    },
+    {
+      "type": "url",
+      "id": "facebook_link",
+      "label": "Link do Facebook"
+    }
+  ],
   "presets": [
     {
       "name": "Rodapé Fitness"
