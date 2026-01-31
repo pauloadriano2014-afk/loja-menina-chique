@@ -1,0 +1,30 @@
+:root {
+  --font-body: 'Helvetica Neue', Arial, sans-serif;
+  --color-primary: #000000;
+  --color-accent: #ff007f; /* Rosa choque fitness - altere se ela preferir outra */
+  --color-text: #333333;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  margin: 0;
+}
+
+h1, h2, h3 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.button-fitness {
+  background: var(--color-primary);
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button-fitness:hover {
+  background: var(--color-accent);
+}
