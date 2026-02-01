@@ -11,10 +11,17 @@
   "sections": {
     "main": {
       "type": "product",
+      "disabled": true,
+      "settings": {}
+    },
+    "produto_fitness_izRpRL": {
+      "type": "produto-fitness",
+      "name": "Produto Fitness Pro",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "produto_fitness_izRpRL"
   ]
 }

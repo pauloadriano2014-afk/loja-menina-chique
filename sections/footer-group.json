@@ -11,6 +11,13 @@
   "type": "footer",
   "name": "t:general.footer",
   "sections": {
+    "whatsapp_flutuante_i3zBRP": {
+      "type": "whatsapp-flutuante",
+      "name": "Botão WhatsApp Flutuante",
+      "settings": {
+        "link_whatsapp": ""
+      }
+    },
     "footer_fitness_Ar4iYe": {
       "type": "footer-fitness",
       "name": "Rodapé Fitness",
@@ -26,6 +33,7 @@
     }
   },
   "order": [
+    "whatsapp_flutuante_i3zBRP",
     "footer_fitness_Ar4iYe",
     "footer"
   ]
