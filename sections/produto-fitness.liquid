@@ -42,15 +42,55 @@
 
   .prod-price {
     font-size: 24px;
-    color: #000;
+    color: #FF1493; /* Preço Rosa */
     margin-bottom: 5px;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .prod-installments {
     font-size: 14px;
     color: #666;
     margin-bottom: 25px;
+  }
+
+  /* SELETOR DE TAMANHOS (NOVO) */
+  .variant-wrapper {
+    margin-bottom: 25px;
+  }
+  .variant-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+  }
+  .variant-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  /* Esconde a bolinha do rádio padrão */
+  .variant-options input[type="radio"] {
+    display: none;
+  }
+  /* Estilo do botão de tamanho */
+  .variant-options label {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: 0.3s;
+    min-width: 50px;
+    text-align: center;
+  }
+  
+  /* Quando selecionado (Checked) */
+  .variant-options input[type="radio"]:checked + label {
+    background-color: #FF1493;
+    color: #fff;
+    border-color: #FF1493;
   }
 
   /* Botões de Ação */
@@ -92,6 +132,7 @@
   .accordion summary::after {
     content: '+';
     font-size: 18px;
+    color: #FF1493;
   }
   .accordion details[open] summary::after {
     content: '-';
@@ -101,17 +142,6 @@
     color: #555;
     line-height: 1.6;
     font-size: 14px;
-  }
-  
-  /* Área do Frete (Kangu) */
-  .shipping-placeholder {
-    margin: 20px 0;
-    padding: 15px;
-    background: #f9f9f9;
-    border: 1px dashed #ccc;
-    text-align: center;
-    font-size: 13px;
-    color: #888;
   }
 
   @media (max-width: 768px) {
@@ -138,7 +168,29 @@
     </div>
 
     {% form 'product', product %}
-      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      
+      {% unless product.has_only_default_variant %}
+        <div class="variant-wrapper">
+          <span class="variant-label">Escolha a Opção:</span>
+          <div class="variant-options">
+            {% for variant in product.variants %}
+              <input 
+                type="radio" 
+                id="variant_{{ variant.id }}" 
+                name="id" 
+                value="{{ variant.id }}" 
+                {% if forloop.first %}checked{% endif %}
+                {% unless variant.available %}disabled{% endunless %}
+              >
+              <label for="variant_{{ variant.id }}" {% unless variant.available %}style="opacity:0.5; text-decoration:line-through;"{% endunless %}>
+                {{ variant.title }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+      {% else %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      {% endunless %}
       
       <button type="submit" name="add" class="btn-add-cart">
         Adicionar ao Carrinho
@@ -146,7 +198,6 @@
       
       {{ form | payment_button }}
       
-
     {% endform %}
 
     <div class="accordion">
@@ -160,9 +211,9 @@
       <details>
         <summary>Tabela de Medidas</summary>
         <div class="accordion-content">
-          <p>P: 36-38 | Cintura: 60-68cm</p>
-          <p>M: 40-42 | Cintura: 69-77cm</p>
-          <p>G: 44-46 | Cintura: 78-86cm</p>
+          <p><strong>P (36-38):</strong> Cintura 60-68cm | Quadril 88-96cm</p>
+          <p><strong>M (40-42):</strong> Cintura 69-77cm | Quadril 97-105cm</p>
+          <p><strong>G (44-46):</strong> Cintura 78-86cm | Quadril 106-114cm</p>
         </div>
       </details>
 
