@@ -39,14 +39,46 @@
       "disabled": true,
       "settings": {}
     },
-    "tabela_medidas_GfGK9W": {
-      "type": "tabela-medidas",
-      "name": "Tabela de Medidas Fitness",
-      "settings": {}
-    },
     "product_features_aLprQT": {
       "type": "product-features",
       "name": "Destaques Técnicos do Produto",
+      "settings": {}
+    },
+    "galeria_clientes_Fij4e3": {
+      "type": "galeria-clientes",
+      "blocks": {
+        "image_rBt3eY": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Cansada_de_treinar_sempre_com_o_mesmo_look_Na_Menina_Chique_voce_encontra_moda_fitness_confort.jpg"
+          }
+        },
+        "image_W8PLDC": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Look_de_verao_pra_brilhar_em_qualquer_ocasiao_Conjunto_maravilhoso_por_R_159_90Bolsa_por_R_69.jpg"
+          }
+        },
+        "image_hhGbCN": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Look_disponivel_na_loja_Blusinha_R_59_90_Calcao_R_69_90_Bolsa_R_119_90_Acessorios_R.jpg"
+          }
+        },
+        "image_hBWLVP": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Vestido_longo_estampado_confortavel_e_lindo_Disponivel_na_loja_por_R_159_90..jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_rBt3eY",
+        "image_W8PLDC",
+        "image_hhGbCN",
+        "image_hBWLVP"
+      ],
+      "name": "Galeria Clientes",
       "settings": {}
     }
   },
@@ -55,7 +87,7 @@
     "collections_WBJRrK",
     "produtos_destaque_TeAM9e",
     "main",
-    "tabela_medidas_GfGK9W",
-    "product_features_aLprQT"
+    "product_features_aLprQT",
+    "galeria_clientes_Fij4e3"
   ]
 }
