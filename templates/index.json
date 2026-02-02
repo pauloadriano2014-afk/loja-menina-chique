@@ -34,14 +34,14 @@
         "product_limit": 4
       }
     },
+    "diferenciais_produto_3rAj6E": {
+      "type": "diferenciais-produto",
+      "name": "Diferenciais Produto",
+      "settings": {}
+    },
     "main": {
       "type": "hello-world",
       "disabled": true,
-      "settings": {}
-    },
-    "product_features_aLprQT": {
-      "type": "product-features",
-      "name": "Destaques Técnicos do Produto",
       "settings": {}
     },
     "galeria_clientes_Fij4e3": {
@@ -86,8 +86,8 @@
     "banner_fitness_6rCiWy",
     "collections_WBJRrK",
     "produtos_destaque_TeAM9e",
+    "diferenciais_produto_3rAj6E",
     "main",
-    "product_features_aLprQT",
     "galeria_clientes_Fij4e3"
   ]
 }
