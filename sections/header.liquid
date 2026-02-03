@@ -1,13 +1,9 @@
 <style>
-  /* Força a largura total da tela (Full Width) */
+  /* --- ESTRUTURA GERAL --- */
   .site-header-container {
     background: #000;
-    width: 100vw; 
+    width: 100%;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
     border-bottom: 1px solid #333;
     z-index: 1000;
   }
@@ -16,33 +12,36 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1200px;
+    max-width: 1400px; /* Aumentei para caber mais itens */
     margin: 0 auto;
     padding: 0 20px;
-    height: 80px;
+    height: 70px; /* Altura um pouco menor para ficar elegante */
   }
-  
-  /* Logo */
+
+  /* --- LOGO --- */
   .logo {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: #fff;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 20px;
+    flex-shrink: 0; /* Impede o logo de amassar */
   }
   .logo img {
-    max-height: 60px;
+    max-height: 50px;
     width: auto;
   }
 
-  /* --- MENU DESKTOP --- */
+  /* --- MENU DESKTOP (AJUSTADO PARA NÃO QUEBRAR) --- */
   .desktop-nav {
     display: none;
     height: 100%;
-    gap: 30px;
+    align-items: center;
+    gap: 15px; /* Espaço menor entre os itens */
+    flex-wrap: nowrap; /* Força ficar na mesma linha */
   }
-  
+
   .nav-item {
     position: relative;
     height: 100%;
@@ -53,70 +52,121 @@
   .nav-link {
     color: #fff;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 12px; /* Fonte menor para caber tudo */
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 0.5px;
     transition: color 0.3s;
     padding: 0 5px;
+    white-space: nowrap; /* Texto não quebra linha */
     cursor: pointer;
   }
-  
-  .nav-link:hover {
-    color: #ff007f;
-  }
 
-  /* O Dropdown */
+  .nav-link:hover { color: #ff007f; }
+  .nav-link span { font-size: 10px; margin-left: 3px; } /* Setinha pequena */
+
+  /* Dropdown Desktop */
   .dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #ffffff;
-    min-width: 220px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    background-color: #fff;
+    min-width: 200px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     border-top: 3px solid #ff007f;
-    z-index: 2000;
-    border-radius: 0 0 8px 8px;
-    padding: 10px 0;
     flex-direction: column;
   }
-
-  .nav-item:hover .dropdown-menu {
-    display: flex;
-    animation: fadeIn 0.3s ease;
-  }
-
+  .nav-item:hover .dropdown-menu { display: flex; }
+  
   .dropdown-menu a {
-    color: #333 !important;
+    color: #333;
     text-decoration: none;
-    padding: 12px 20px;
-    font-size: 14px;
-    text-transform: capitalize;
-    border-bottom: 1px solid #f5f5f5;
-    transition: background 0.2s;
+    padding: 12px 15px;
+    font-size: 13px;
+    border-bottom: 1px solid #eee;
     white-space: nowrap;
   }
-
   .dropdown-menu a:hover {
+    background: #f5f5f5;
+    color: #ff007f;
+    padding-left: 20px;
+    transition: 0.2s;
+  }
+
+  /* --- MENU MOBILE (SANFONA) --- */
+  .mobile-toggle {
+    display: block;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .mobile-nav-container {
+    display: none; /* Escondido por padrão */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    height: calc(100vh - 70px); /* Altura da tela menos o header */
+    overflow-y: auto; /* Permite rolar se o menu for grande */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  }
+  .mobile-nav-container.active { display: block; }
+
+  /* Estilo da Sanfona Mobile */
+  .mobile-item { border-bottom: 1px solid #eee; }
+  
+  .mobile-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  
+  /* Botão de abrir (+) */
+  .accordion-toggle {
+    font-size: 18px;
+    color: #ff007f;
+    width: 40px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  /* Submenu Mobile */
+  .mobile-submenu {
+    display: none;
     background-color: #f9f9f9;
-    color: #ff007f !important;
-    padding-left: 25px;
+    padding-left: 20px;
+  }
+  .mobile-submenu.open { display: block; }
+
+  .mobile-submenu a {
+    display: block;
+    padding: 12px 20px;
+    color: #555;
+    text-decoration: none;
+    font-size: 13px;
+    border-bottom: 1px solid #eee;
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  /* Ícones */
+  .header-icons a { color: #fff; font-size: 22px; text-decoration: none; margin-left: 10px;}
 
-  /* Ícones e Mobile */
-  .header-icons a { text-decoration: none; color: #fff; font-size: 24px; }
-  .mobile-toggle { display: block; font-size: 26px; background: none; border: none; color: #fff; cursor: pointer; }
-  .mobile-nav { display: none; background: #fff; position: absolute; top: 100%; left: 0; width: 100%; box-shadow: 0 5px 10px rgba(0,0,0,0.1); z-index: 999; }
-  .mobile-nav a { display: block; padding: 15px 20px; border-bottom: 1px solid #eee; color: #000; text-decoration: none; }
-  .mobile-nav.active { display: block; }
-
-  @media (min-width: 900px) {
+  @media (min-width: 1000px) {
     .mobile-toggle { display: none; }
     .desktop-nav { display: flex; }
   }
@@ -124,7 +174,7 @@
 
 <div class="site-header-container">
   <div class="header-wrapper">
-    <button class="mobile-toggle" onclick="document.getElementById('mobileMenu').classList.toggle('active')">☰</button>
+    <button class="mobile-toggle" onclick="toggleMobileMenu()">☰</button>
 
     <a href="/" class="logo">
       {% if section.settings.logo != blank %}
@@ -138,7 +188,8 @@
       {% for link in linklists[section.settings.menu].links %}
         <div class="nav-item">
           <a href="{{ link.url }}" class="nav-link">
-            {{ link.title }} {% if link.links != blank %} ▾ {% endif %}
+            {{ link.title }}
+            {% if link.links != blank %} <span>▾</span> {% endif %}
           </a>
           {% if link.links != blank %}
             <div class="dropdown-menu">
@@ -156,12 +207,41 @@
     </div>
   </div>
 
-  <div id="mobileMenu" class="mobile-nav">
+  <div id="mobileMenu" class="mobile-nav-container">
     {% for link in linklists[section.settings.menu].links %}
-      <a href="{{ link.url }}">{{ link.title }}</a>
+      <div class="mobile-item">
+        {% if link.links != blank %}
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <a href="{{ link.url }}" class="mobile-link" style="flex-grow: 1;">{{ link.title }}</a>
+            <span class="accordion-toggle" onclick="toggleSubmenu(this)">+</span>
+          </div>
+          <div class="mobile-submenu">
+            {% for child_link in link.links %}
+              <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+            {% endfor %}
+          </div>
+        {% else %}
+          <a href="{{ link.url }}" class="mobile-link">{{ link.title }}</a>
+        {% endif %}
+      </div>
     {% endfor %}
   </div>
 </div>
+
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('active');
+  }
+
+  function toggleSubmenu(element) {
+    // Acha a div mobile-submenu vizinha desse botão
+    var submenu = element.parentElement.nextElementSibling;
+    if (submenu) {
+      submenu.classList.toggle('open');
+      element.innerText = submenu.classList.contains('open') ? '-' : '+';
+    }
+  }
+</script>
 
 {% schema %}
 {
