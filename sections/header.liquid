@@ -1,5 +1,5 @@
 <style>
-  /* --- ESTRUTURA GERAL --- */
+  /* HEADER CONTAINER */
   .site-header-container {
     background: #000;
     width: 100%;
@@ -10,171 +10,152 @@
 
   .header-wrapper {
     display: flex;
-    align-items: center;
+    align-items: center; /* Centraliza verticalmente */
     justify-content: space-between;
-    max-width: 1400px; /* Aumentei para caber mais itens */
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
-    height: 70px; /* Altura um pouco menor para ficar elegante */
+    padding: 15px 20px; /* Padding maior para respirar */
+    min-height: 80px; /* Altura mínima garantida */
   }
 
-  /* --- LOGO --- */
-  .logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    font-size: 20px;
-    flex-shrink: 0; /* Impede o logo de amassar */
-  }
-  .logo img {
-    max-height: 50px;
-    width: auto;
-  }
+  /* LOGO */
+  .logo { margin-right: 30px; display: block; line-height: 0; }
+  .logo img { max-height: 55px; width: auto; }
 
-  /* --- MENU DESKTOP (AJUSTADO PARA NÃO QUEBRAR) --- */
+  /* MENU DESKTOP */
   .desktop-nav {
     display: none;
-    height: 100%;
     align-items: center;
-    gap: 15px; /* Espaço menor entre os itens */
-    flex-wrap: nowrap; /* Força ficar na mesma linha */
+    gap: 20px;
+    flex-wrap: wrap; /* Permite quebrar linha se a tela for pequena */
   }
 
-  .nav-item {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
-  }
+  .nav-item { position: relative; padding: 10px 0; }
 
   .nav-link {
     color: #fff;
     text-decoration: none;
-    font-size: 12px; /* Fonte menor para caber tudo */
+    font-size: 13px;
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 0.5px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
     transition: color 0.3s;
-    padding: 0 5px;
-    white-space: nowrap; /* Texto não quebra linha */
-    cursor: pointer;
   }
 
   .nav-link:hover { color: #ff007f; }
-  .nav-link span { font-size: 10px; margin-left: 3px; } /* Setinha pequena */
+  .nav-link span { font-size: 10px; margin-left: 4px; color: #ff007f; }
 
-  /* Dropdown Desktop */
+  /* DROPDOWN */
   .dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #fff;
+    background: #fff;
     min-width: 200px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     border-top: 3px solid #ff007f;
+    z-index: 2000;
+    border-radius: 0 0 5px 5px;
     flex-direction: column;
+    margin-top: 10px; /* Afasta um pouco para não cobrir a borda */
   }
-  .nav-item:hover .dropdown-menu { display: flex; }
   
+  .nav-item:hover .dropdown-menu { display: flex; }
+
   .dropdown-menu a {
     color: #333;
     text-decoration: none;
-    padding: 12px 15px;
+    padding: 12px 20px;
     font-size: 13px;
-    border-bottom: 1px solid #eee;
-    white-space: nowrap;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.2s;
   }
   .dropdown-menu a:hover {
-    background: #f5f5f5;
+    background: #f9f9f9;
     color: #ff007f;
-    padding-left: 20px;
-    transition: 0.2s;
+    padding-left: 25px;
   }
 
-  /* --- MENU MOBILE (SANFONA) --- */
+  /* ÍCONES */
+  .header-icons { display: flex; align-items: center; gap: 15px; }
+  .header-icons a { color: #fff; font-size: 22px; text-decoration: none; }
+
+  /* MOBILE TOGGLE */
   .mobile-toggle {
     display: block;
-    font-size: 24px;
+    font-size: 26px;
     background: none;
     border: none;
     color: #fff;
     cursor: pointer;
-    padding: 10px;
   }
 
+  /* MOBILE DRAWER (GAVETA) */
   .mobile-nav-container {
-    display: none; /* Escondido por padrão */
+    display: none;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
     background: #fff;
-    height: calc(100vh - 70px); /* Altura da tela menos o header */
-    overflow-y: auto; /* Permite rolar se o menu for grande */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border-top: 1px solid #ddd;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   }
   .mobile-nav-container.active { display: block; }
 
-  /* Estilo da Sanfona Mobile */
   .mobile-item { border-bottom: 1px solid #eee; }
   
-  .mobile-link {
+  .mobile-link-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     padding: 15px 20px;
-    background: none;
-    border: none;
-    text-align: left;
-    font-size: 14px;
-    font-weight: 600;
-    color: #000;
-    text-transform: uppercase;
-    text-decoration: none;
   }
-  
-  /* Botão de abrir (+) */
-  .accordion-toggle {
-    font-size: 18px;
+
+  .mobile-link {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    flex-grow: 1;
+  }
+
+  .accordion-btn {
+    font-size: 20px;
     color: #ff007f;
     width: 40px;
     text-align: center;
     cursor: pointer;
+    font-weight: bold;
   }
 
-  /* Submenu Mobile */
-  .mobile-submenu {
-    display: none;
-    background-color: #f9f9f9;
-    padding-left: 20px;
-  }
+  .mobile-submenu { display: none; background: #f5f5f5; }
   .mobile-submenu.open { display: block; }
-
+  
   .mobile-submenu a {
     display: block;
-    padding: 12px 20px;
+    padding: 12px 30px;
     color: #555;
     text-decoration: none;
     font-size: 13px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ddd;
   }
 
-  /* Ícones */
-  .header-icons a { color: #fff; font-size: 22px; text-decoration: none; margin-left: 10px;}
-
-  @media (min-width: 1000px) {
+  @media (min-width: 900px) {
     .mobile-toggle { display: none; }
     .desktop-nav { display: flex; }
+    .mobile-nav-container { display: none !important; }
   }
 </style>
 
 <div class="site-header-container">
   <div class="header-wrapper">
-    <button class="mobile-toggle" onclick="toggleMobileMenu()">☰</button>
+    <button class="mobile-toggle" onclick="document.getElementById('mobileNav').classList.toggle('active')">☰</button>
 
     <a href="/" class="logo">
       {% if section.settings.logo != blank %}
@@ -189,12 +170,12 @@
         <div class="nav-item">
           <a href="{{ link.url }}" class="nav-link">
             {{ link.title }}
-            {% if link.links != blank %} <span>▾</span> {% endif %}
+            {% if link.links != blank %} <span>▼</span> {% endif %}
           </a>
           {% if link.links != blank %}
             <div class="dropdown-menu">
-              {% for child_link in link.links %}
-                <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+              {% for child in link.links %}
+                <a href="{{ child.url }}">{{ child.title }}</a>
               {% endfor %}
             </div>
           {% endif %}
@@ -207,41 +188,26 @@
     </div>
   </div>
 
-  <div id="mobileMenu" class="mobile-nav-container">
+  <div id="mobileNav" class="mobile-nav-container">
     {% for link in linklists[section.settings.menu].links %}
       <div class="mobile-item">
+        <div class="mobile-link-wrapper">
+          <a href="{{ link.url }}" class="mobile-link">{{ link.title }}</a>
+          {% if link.links != blank %}
+            <span class="accordion-btn" onclick="this.parentElement.nextElementSibling.classList.toggle('open'); this.innerText = this.innerText == '+' ? '-' : '+'">+</span>
+          {% endif %}
+        </div>
         {% if link.links != blank %}
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <a href="{{ link.url }}" class="mobile-link" style="flex-grow: 1;">{{ link.title }}</a>
-            <span class="accordion-toggle" onclick="toggleSubmenu(this)">+</span>
-          </div>
           <div class="mobile-submenu">
-            {% for child_link in link.links %}
-              <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+            {% for child in link.links %}
+              <a href="{{ child.url }}">{{ child.title }}</a>
             {% endfor %}
           </div>
-        {% else %}
-          <a href="{{ link.url }}" class="mobile-link">{{ link.title }}</a>
         {% endif %}
       </div>
     {% endfor %}
   </div>
 </div>
-
-<script>
-  function toggleMobileMenu() {
-    document.getElementById('mobileMenu').classList.toggle('active');
-  }
-
-  function toggleSubmenu(element) {
-    // Acha a div mobile-submenu vizinha desse botão
-    var submenu = element.parentElement.nextElementSibling;
-    if (submenu) {
-      submenu.classList.toggle('open');
-      element.innerText = submenu.classList.contains('open') ? '-' : '+';
-    }
-  }
-</script>
 
 {% schema %}
 {
