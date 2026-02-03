@@ -1,145 +1,156 @@
 <style>
-  /* FAIXA PRETA TOTAL */
-  .header-section-wrapper {
-    background-color: #000;
-    width: 100%; /* Corrigido: 100% respeita a barra de rolagem */
+  /* --- CORREÇÃO DA BORDA (BRANCO NOS CANTOS) --- */
+  .site-header-bg {
+    background: #000;
+    /* O Segredo para ignorar as margens do tema: */
+    width: 100vw; 
+    margin-left: calc(50% - 50vw);
+    width: 100vw;
+    
     border-bottom: 1px solid #333;
     position: relative;
-    z-index: 1000;
+    z-index: 10000;
+    box-sizing: border-box;
   }
 
-  /* CONTEÚDO CENTRALIZADO */
-  .header-content-container {
-    max-width: 1300px;
+  .header-wrapper {
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
-    height: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 20px;
+    height: 80px;
+    position: relative;
   }
 
   /* LOGO */
-  .header-logo img {
-    max-height: 55px;
-    width: auto;
-    display: block;
-  }
+  .logo img { max-height: 50px; width: auto; display: block; border: none; }
+  .logo { text-decoration: none; }
 
-  /* MENU DESKTOP (HORIZONTAL) */
-  .desktop-navigation {
+  /* MENU DESKTOP */
+  .desktop-nav {
     display: none;
     height: 100%;
     align-items: center;
-    gap: 25px;
+    gap: 20px;
   }
 
-  .menu-item {
+  .nav-item {
     height: 100%;
     display: flex;
     align-items: center;
     position: relative;
   }
 
-  .menu-link {
+  .nav-link {
     color: #fff;
     text-decoration: none;
     font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    padding: 0 5px;
     white-space: nowrap;
     cursor: pointer;
-    transition: color 0.2s;
   }
+  .nav-link:hover { color: #ff007f; }
+  .nav-link span { font-size: 10px; margin-left: 3px; color: #ff007f; }
 
-  .menu-link:hover { color: #ff007f; }
-  .menu-link span { font-size: 10px; margin-left: 4px; color: #ff007f; }
-
-  /* DROPDOWN (O Menu que desce) */
-  .submenu-dropdown {
+  /* DROPDOWN */
+  .dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     background: #fff;
-    min-width: 220px;
+    min-width: 200px;
     border-top: 3px solid #ff007f;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
     flex-direction: column;
-    padding: 5px 0;
-    z-index: 1001;
+    z-index: 10001;
   }
 
-  .menu-item:hover .submenu-dropdown { display: flex; }
+  .nav-item:hover .dropdown-menu { display: flex; }
 
-  .submenu-link {
+  .dropdown-menu a {
     color: #333;
-    text-decoration: none;
     padding: 12px 20px;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
     font-size: 13px;
-    border-bottom: 1px solid #f5f5f5;
-    transition: all 0.2s;
+    transition: 0.2s;
   }
-
-  .submenu-link:hover {
-    background: #fafafa;
+  .dropdown-menu a:hover {
+    background: #f5f5f5;
     color: #ff007f;
     padding-left: 25px;
   }
 
-  /* ÍCONES */
-  .icon-wrapper a {
-    color: #fff;
-    font-size: 22px;
-    text-decoration: none;
-    margin-left: 15px;
+  /* --- CORREÇÃO DO CARRINHO ROSA --- */
+  .header-icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .cart-icon-link {
+    color: #fff !important;
+    font-size: 24px !important;
+    text-decoration: none !important;
+    background: none !important; /* Remove o fundo rosa */
+    border: none !important;       /* Remove a borda rosa */
+    box-shadow: none !important;   /* Remove qualquer sombra */
+    padding: 10px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 !important;
+  }
+  
+  /* Se tiver SVG dentro, garante que é branco */
+  .cart-icon-link svg {
+    fill: #fff;
+    width: 24px;
+    height: 24px;
   }
 
-  /* MOBILE */
-  .mobile-trigger {
-    display: block;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-  }
-
-  .mobile-drawer {
+  /* MOBILE TOGGLE */
+  .mobile-toggle { font-size: 24px; color: #fff; background: none; border: none; cursor: pointer; }
+  
+  /* GAVETA MOBILE */
+  .mobile-nav {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
     background: #fff;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    border-top: 1px solid #ddd;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
   }
-  .mobile-drawer.is-open { display: block; }
-
-  .mobile-row { border-bottom: 1px solid #eee; }
-  .mobile-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
-  .mobile-a { text-decoration: none; color: #000; font-weight: bold; text-transform: uppercase; font-size: 14px; }
-  .mobile-btn { color: #ff007f; font-weight: bold; font-size: 20px; width: 40px; text-align: center; cursor: pointer; }
+  .mobile-nav.active { display: block; }
   
-  .mobile-children { display: none; background: #f9f9f9; padding-left: 20px; }
-  .mobile-children.show { display: block; }
-  .mobile-child-a { display: block; padding: 12px 15px; color: #555; text-decoration: none; border-bottom: 1px solid #ddd; font-size: 13px; }
+  .mobile-link-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px; border-bottom: 1px solid #eee;
+  }
+  .mobile-link { color: #000; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 14px; }
+  .plus-btn { color: #ff007f; font-weight: bold; font-size: 20px; width: 40px; text-align: center; }
+  
+  .mobile-sub { display: none; background: #f9f9f9; padding-left: 20px; }
+  .mobile-sub.show { display: block; }
+  .mobile-sub a { display: block; padding: 12px; color: #555; text-decoration: none; border-bottom: 1px solid #ddd; }
 
   @media (min-width: 900px) {
-    .mobile-trigger { display: none; }
-    .desktop-navigation { display: flex; }
-    .mobile-drawer { display: none !important; }
+    .mobile-toggle { display: none; }
+    .desktop-nav { display: flex; }
+    .mobile-nav { display: none !important; }
   }
 </style>
 
-<div class="header-section-wrapper">
-  <div class="header-content-container">
-    
-    <button class="mobile-trigger" onclick="document.getElementById('mobileMenu').classList.toggle('is-open')">☰</button>
+<div class="site-header-bg">
+  <div class="header-wrapper">
+    <button class="mobile-toggle" onclick="document.getElementById('mobileNav').classList.toggle('active')">☰</button>
 
-    <a href="/" class="header-logo">
+    <a href="/" class="logo">
       {% if section.settings.logo != blank %}
         <img src="{{ section.settings.logo | img_url: 'master' }}" alt="{{ shop.name }}">
       {% else %}
@@ -147,43 +158,39 @@
       {% endif %}
     </a>
 
-    <nav class="desktop-navigation">
+    <nav class="desktop-nav">
       {% for link in linklists[section.settings.menu].links %}
-        <div class="menu-item">
-          <a href="{{ link.url }}" class="menu-link">
-            {{ link.title }}
-            {% if link.links != blank %} <span>▾</span> {% endif %}
-          </a>
-          
+        <div class="nav-item">
+          <a href="{{ link.url }}" class="nav-link">{{ link.title }} {% if link.links != blank %} <span>▾</span> {% endif %}</a>
           {% if link.links != blank %}
-            <div class="submenu-dropdown">
+            <div class="dropdown-menu">
               {% for child in link.links %}
-                <a href="{{ child.url }}" class="submenu-link">{{ child.title }}</a>
+                <a href="{{ child.url }}">{{ child.title }}</a>
               {% endfor %}
             </div>
           {% endif %}
         </div>
       {% endfor %}
     </nav>
-    
-    <div class="icon-wrapper">
-      <a href="/cart">🛒</a>
+
+    <div class="header-icons">
+      <a href="/cart" class="cart-icon-link">🛒</a>
     </div>
   </div>
 
-  <div id="mobileMenu" class="mobile-drawer">
+  <div id="mobileNav" class="mobile-nav">
     {% for link in linklists[section.settings.menu].links %}
-      <div class="mobile-row">
-        <div class="mobile-header">
-          <a href="{{ link.url }}" class="mobile-a">{{ link.title }}</a>
+      <div>
+        <div class="mobile-link-row">
+          <a href="{{ link.url }}" class="mobile-link">{{ link.title }}</a>
           {% if link.links != blank %}
-            <div class="mobile-btn" onclick="this.parentElement.nextElementSibling.classList.toggle('show'); this.innerText = this.innerText=='+'?'-':'+'">+</div>
+            <div class="plus-btn" onclick="this.parentElement.nextElementSibling.classList.toggle('show'); this.innerText = this.innerText=='+'?'-':'+'">+</div>
           {% endif %}
         </div>
         {% if link.links != blank %}
-          <div class="mobile-children">
+          <div class="mobile-sub">
             {% for child in link.links %}
-              <a href="{{ child.url }}" class="mobile-child-a">{{ child.title }}</a>
+              <a href="{{ child.url }}">{{ child.title }}</a>
             {% endfor %}
           </div>
         {% endif %}
