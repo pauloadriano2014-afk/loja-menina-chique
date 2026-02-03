@@ -9,7 +9,7 @@
   <h1 class="collection-title">{{ collection.title }}</h1>
 
   <div class="collection-products">
-    {% paginate collection.products by 20 %}
+    
       {% for product in collection.products %}
         <div class="collection-product">
           <a href="{{ product.url }}" class="product-link">
@@ -36,7 +36,7 @@
       <div class="pagination-wrapper">
         {{ paginate | default_pagination }}
       </div>
-    {% endpaginate %}
+    
   </div>
 </div>
 
