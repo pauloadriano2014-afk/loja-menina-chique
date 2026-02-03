@@ -53,7 +53,7 @@
     margin-bottom: 25px;
   }
 
-  /* SELETOR DE TAMANHOS (NOVO) */
+  /* SELETOR DE TAMANHOS */
   .variant-wrapper {
     margin-bottom: 25px;
   }
@@ -208,14 +208,30 @@
         </div>
       </details>
       
-      <details>
-        <summary>Tabela de Medidas</summary>
-        <div class="accordion-content">
-          <p><strong>P (36-38):</strong> Cintura 60-68cm | Quadril 88-96cm</p>
-          <p><strong>M (40-42):</strong> Cintura 69-77cm | Quadril 97-105cm</p>
-          <p><strong>G (44-46):</strong> Cintura 78-86cm | Quadril 106-114cm</p>
-        </div>
-      </details>
+      {% comment %} 
+        LÓGICA INTELIGENTE:
+        Só mostra a tabela de medidas se o produto NÃO for:
+        Rasteirinha, Acessório, Cinto, Meia, Boné ou Bolsa.
+      {% endcomment %}
+      
+      {% assign show_size_chart = true %}
+      {% for tag in product.tags %}
+        {% assign t = tag | downcase %}
+        {% if t contains 'rasteirinha' or t contains 'acessorio' or t contains 'cinto' or t contains 'meia' or t contains 'bone' or t contains 'bolsa' %}
+          {% assign show_size_chart = false %}
+        {% endif %}
+      {% endfor %}
+
+      {% if show_size_chart %}
+        <details>
+          <summary>Tabela de Medidas</summary>
+          <div class="accordion-content">
+            <p><strong>P (36-38):</strong> Cintura 60-68cm | Quadril 88-96cm</p>
+            <p><strong>M (40-42):</strong> Cintura 69-77cm | Quadril 97-105cm</p>
+            <p><strong>G (44-46):</strong> Cintura 78-86cm | Quadril 106-114cm</p>
+          </div>
+        </details>
+      {% endif %}
 
       <details>
         <summary>Envio e Trocas</summary>
