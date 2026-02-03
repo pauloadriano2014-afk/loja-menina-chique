@@ -2,6 +2,7 @@
   .footer-full-width {
     background-color: #000000;
     color: #ffffff;
+    /* Hack para Fundo Infinito (Full Width) */
     width: 100vw;
     position: relative;
     left: 50%;
@@ -11,7 +12,9 @@
     padding: 60px 0 30px;
     margin-top: 50px;
     border-top: 4px solid #FF1493; /* Linha Superior Rosa */
+    box-sizing: border-box;
   }
+  
   .footer-inner {
     max-width: 1200px;
     margin: 0 auto;
@@ -21,12 +24,13 @@
     justify-content: space-between;
     gap: 40px;
   }
+  
   .footer-col { 
     flex: 1; 
     min-width: 250px; 
   }
   
-  /* Títulos em Rosa Menina Chique */
+  /* Títulos */
   .footer-col h3 { 
     font-size: 18px; 
     font-weight: bold; 
@@ -51,18 +55,17 @@
     transition: color 0.3s ease;
   }
   
-  /* Hover dos links fica Rosa */
   .footer-col a:hover { 
     color: #FF1493; 
-    padding-left: 5px; /* Efeitozinho de movimento */
+    padding-left: 5px; 
   }
   
-  /* Botão do Whats Destacado */
+  /* Botão WhatsApp */
   .whatsapp-btn {
-    background-color: #25D366; /* Verde WhatsApp Original */
+    background-color: #25D366; 
     color: #fff !important;
     padding: 12px 20px;
-    border-radius: 50px; /* Redondinho moderno */
+    border-radius: 50px; 
     text-align: center;
     font-weight: bold;
     display: inline-flex !important;
@@ -71,17 +74,15 @@
     text-decoration: none !important;
     margin-top: 10px;
     box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease;
   }
   
   .whatsapp-btn:hover {
     background-color: #1ebc57;
     transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(37, 211, 102, 0.5);
-    padding-left: 20px; /* Anula o efeito do link comum */
-    color: #fff !important;
   }
 
+  /* Copyright */
   .copy {
     text-align: center;
     border-top: 1px solid #222;
@@ -90,8 +91,31 @@
     font-size: 12px;
     color: #666;
   }
-  
   .copy strong { color: #fff; }
+
+  /* --- CORREÇÃO MOBILE (A Mágica acontece aqui) --- */
+  @media (max-width: 768px) {
+    .footer-inner {
+      flex-direction: column; /* Empilha um embaixo do outro */
+      gap: 40px; /* Espaço entre os blocos */
+      padding: 0 25px; /* Margem lateral segura */
+    }
+    
+    .footer-col {
+      min-width: 100%; /* Força ocupar a linha toda */
+      text-align: left; /* Garante alinhamento na esquerda */
+      flex: none;
+    }
+
+    .footer-full-width {
+      padding-top: 40px; /* Menos espaço no topo para celular */
+    }
+    
+    .whatsapp-btn {
+      width: 100%; /* Botão grande no dedo */
+      justify-content: center;
+    }
+  }
 </style>
 
 <footer class="footer-full-width">
