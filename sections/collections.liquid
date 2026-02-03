@@ -1,106 +1,153 @@
+{% comment %}
+  VERSÃO RESTAURADA: Design Completo Menina Chique
+  - Mantém todo o CSS original (Grid, Cores, Hover)
+  - Corrige o erro de paginação (substituindo paginate por limit)
+  - Adiciona diagnóstico para produtos ocultos
+{% endcomment %}
+
 <div class="page-width collection-container">
   <h1 class="collection-title">{{ collection.title }}</h1>
 
-  {% comment %} SEGURO: Verifica se tem produtos antes de tentar mostrar {% endcomment %}
-  {% if collection.products_count > 0 %}
+  <div class="collection-products">
     
-    <div class="collection-products-grid">
-      {% for product in collection.products limit: 50 %}
-        <div class="product-card">
-          <a href="{{ product.url }}" class="product-link">
-            <div class="image-wrapper">
-              {% if product.featured_image %}
-                <img 
-                  src="{{ product.featured_image | img_url: '400x500', crop: 'center' }}" 
-                  alt="{{ product.title | escape }}"
-                  loading="lazy"
-                >
-              {% else %}
-                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-              {% endif %}
-            </div>
-            <div class="product-info">
-              <p class="product-title">{{ product.title }}</p>
-              <p class="product-price">{{ product.price | money }}</p>
-            </div>
-          </a>
-        </div>
-      {% endfor %}
-    </div>
+    {% comment %} CORREÇÃO TÉCNICA: Usamos o loop direto para evitar o erro 'not paginateable' {% endcomment %}
+    {% for product in collection.products limit: 50 %}
+      <div class="collection-product">
+        <a href="{{ product.url }}" class="product-link">
+          
+          <div class="image-wrapper">
+            {% if product.featured_image %}
+              <img 
+                src="{{ product.featured_image | img_url: '500x' }}" 
+                alt="{{ product.title | escape }}"
+                loading="lazy"
+                width="500"
+                height="{{ 500 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+              >
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+           
+          <div class="collection-product__content">
+            <p class="product-title">{{ product.title | escape }}</p>
+            <p class="product-price">{{ product.price | money }}</p>
+          </div>
+        </a>
+      </div>
+    {% else %}
+      {% comment %} AVISO VISUAL SE A COLEÇÃO ESTIVER VAZIA {% endcomment %}
+      <div style="grid-column: 1 / -1; text-align: center; padding: 40px; border: 1px dashed #ccc;">
+        <h3 style="color: #ff007f;">Nenhum produto apareceu.</h3>
+        <p>O Shopify não encontrou produtos com as regras desta coleção.</p>
+        <p style="font-size: 12px; color: #666;">Dica: Verifique se a TAG do produto é exatamente igual (maiúscula/minúscula) à regra da coleção.</p>
+      </div>
+    {% endfor %}
 
-  {% else %}
-    <div style="text-align: center; padding: 50px; background: #f9f9f9;">
-      <h3 style="color: #ff007f;">Nenhum produto encontrado.</h3>
-      <p>Verifique no painel se o produto tem a TAG correta: <strong>fitness</strong> (minúsculo).</p>
-    </div>
-  {% endif %}
+  </div>
 </div>
 
-<style>
-  /* CONFIGURAÇÃO GERAL */
+{% stylesheet %}
+  /* --- SEU CSS ORIGINAL RESTAURADO --- */
+
   .collection-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    background-color: #FFFFFF;
     padding: 40px 20px;
-    background: #fff;
+    max-width: 1200px; /* Trava a largura para não estourar */
+    margin: 0 auto;    /* Centraliza na tela */
+    color: #000000;
   }
+
   .collection-title {
     text-align: center;
+    color: #000000;
     text-transform: uppercase;
-    font-size: 24px;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #ff007f;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #FF1493;
     display: inline-block;
-  }
-
-  /* O GRID QUE CONSERTA A LEGGING GIGANTE */
-  .collection-products-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 colunas no PC */
-    gap: 20px;
+    padding-bottom: 10px;
     width: 100%;
   }
 
-  /* CARTÃO DO PRODUTO */
-  .product-card {
-    border: 1px solid #eee;
-    border-radius: 5px;
+  /* GRID: ISSO AQUI QUE SEGURA A IMAGEM (NÃO APAGAR) */
+  .collection-products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsivo Automático */
+    gap: 30px;
+    width: 100%;
+  }
+
+  .collection-product {
+    background-color: #FFFFFF;
+    border: 1px solid #F0F0F0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
     overflow: hidden;
-    transition: 0.3s;
-    background: #fff;
+    height: 100%; /* Garante altura igual */
   }
-  .product-card:hover {
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-color: #ff007f;
+
+  .collection-product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border-color: #FFC0CB;
   }
-  
+
+  .product-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
   .image-wrapper {
     width: 100%;
-    aspect-ratio: 4 / 5; /* Formato Retrato Fixo */
+    aspect-ratio: 3 / 4; /* FORÇA O FORMATO RETRATO */
     overflow: hidden;
-    background: #f4f4f4;
+    background-color: #F9F9F9;
+    position: relative;
   }
+
   .image-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Preenche sem esticar */
-    transition: transform 0.5s;
+    object-fit: cover; /* A Mágica: Corta o excesso sem esticar */
+    transition: transform 0.5s ease;
   }
-  .product-card:hover img { transform: scale(1.05); }
 
-  .product-info { padding: 15px; text-align: center; }
-  .product-title { margin: 0 0 5px; font-size: 14px; text-transform: uppercase; color: #333; height: 36px; overflow: hidden; }
-  .product-price { font-weight: bold; color: #ff007f; font-size: 16px; margin: 0; }
-
-  /* MOBILE (2 por linha) */
-  @media (max-width: 768px) {
-    .collection-products-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
+  .collection-product:hover .image-wrapper img {
+    transform: scale(1.08);
   }
-</style>
+
+  .collection-product__content {
+    padding: 15px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .product-title {
+    font-size: 0.95rem;
+    margin: 0 0 8px 0;
+    color: #333;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .product-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #FF1493;
+    margin: 0;
+  }
+{% endstylesheet %}
 
 {% schema %}
-{ "name": "Collection Grid Fix", "settings": [] }
+{ "name": "t:general.collection", "settings": [] }
 {% endschema %}
