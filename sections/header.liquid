@@ -10,44 +10,48 @@
     box-sizing: border-box;
   }
 
-  /* --- O GRID DE 3 BLOCOS --- */
+  /* --- O CONTAINER --- */
   .header-wrapper {
     width: 100%;
-    max-width: 100%;
     margin: 0 auto;
-    padding: 0 40px; /* Espaço nas laterais da tela */
+    padding: 0 40px;
     height: 90px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* Espalha Logo e Carrinho */
+    position: relative; /* Importante para o menu centralizar */
   }
 
-  /* 1. BLOCO ESQUERDO (LOGO) */
+  /* 1. LOGO (LIVRE PARA SER HORIZONTAL) */
   .logo-container {
-    flex: 1; /* Ocupa 1 parte do espaço */
     display: flex;
-    justify-content: flex-start; /* Alinha logo à esquerda */
     align-items: center;
+    flex-shrink: 0; /* PROIBIDO ENCOLHER/AMASSAR A LOGO */
+    z-index: 20; /* Fica por cima se der conflito */
   }
   
   .logo img { 
-    max-height: 65px; 
-    max-width: 250px; 
-    width: auto; 
+    height: 60px; /* Altura fixa segura */
+    width: auto;  /* Largura automática (fica horizontal) */
+    max-width: 300px; /* Limite generoso para não estourar */
     display: block; 
     border: none; 
     object-fit: contain;
   }
   .logo { text-decoration: none; display: block; }
 
-  /* 2. BLOCO CENTRAL (MENU) - AQUI ESTÁ A CORREÇÃO */
+  /* 2. MENU DESKTOP (POSICIONAMENTO ABSOLUTO NO CENTRO) */
   .desktop-nav {
-    display: none; /* Mobile esconde */
-    flex: 3; /* Ocupa 3 partes (mais espaço) no meio */
-    justify-content: center; /* CENTRALIZA OS LINKS NA TELA */
+    display: none;
+    position: absolute; /* Solta o menu do fluxo */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* Centraliza matematicamente */
     align-items: center;
-    gap: 30px;
+    gap: 25px;
     height: 100%;
+    z-index: 10;
+    white-space: nowrap; /* Não quebra linha */
   }
 
   .nav-item {
@@ -60,11 +64,10 @@
   .nav-link {
     color: #fff;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13px; /* Fonte levemente menor para caber seu menu grande */
     font-weight: 600;
     text-transform: uppercase;
     padding: 0 5px;
-    white-space: nowrap;
     cursor: pointer;
     transition: 0.2s;
   }
@@ -77,7 +80,7 @@
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%); /* Centraliza o dropdown no item */
+    transform: translateX(-50%);
     background: #fff;
     min-width: 200px;
     border-top: 3px solid #ff007f;
@@ -96,7 +99,6 @@
     border-bottom: 1px solid #eee;
     font-size: 13px;
     transition: 0.2s;
-    white-space: nowrap;
   }
   .dropdown-menu a:hover {
     background: #f5f5f5;
@@ -104,12 +106,13 @@
     padding-left: 25px;
   }
 
-  /* 3. BLOCO DIREITO (CARRINHO) */
+  /* 3. CARRINHO (DIREITA) */
   .header-icons {
-    flex: 1; /* Ocupa 1 parte do espaço (igual a logo) */
     display: flex;
-    justify-content: flex-end; /* Empurra ícones para a direita */
     align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    z-index: 20;
   }
   
   .cart-icon-link {
@@ -152,21 +155,32 @@
   .mobile-sub.show { display: block; }
   .mobile-sub a { display: block; padding: 12px; color: #555; text-decoration: none; border-bottom: 1px solid #ddd; }
 
-  /* RESPONSIVIDADE */
+  /* --- RESPONSIVIDADE INTELIGENTE --- */
+  @media (max-width: 1300px) {
+    /* Se a tela for média (laptop), o menu centralizado pode bater na logo.
+       Então a gente remove o "Absoluto" e deixa fluir normal */
+    .desktop-nav {
+      position: static; 
+      transform: none;
+      margin-left: 20px;
+    }
+    .header-wrapper { justify-content: flex-start; }
+    .header-icons { margin-left: auto; } /* Empurra carrinho pro final */
+  }
+
   @media (max-width: 900px) {
     .mobile-toggle { display: block; }
-    .desktop-nav { display: none; } /* Esconde menu PC */
+    .desktop-nav { display: none; } 
     
-    .header-wrapper { height: 70px; padding: 0 20px; }
-    .logo img { max-height: 45px; max-width: 180px; } 
+    .header-wrapper { height: 70px; padding: 0 15px; justify-content: space-between; }
     
-    /* No mobile, logo e carrinho ficam nos cantos, botão menu na esquerda */
-    .logo-container { justify-content: center; } 
+    /* Logo Mobile */
+    .logo img { height: 40px; max-width: 200px; } 
   }
   
   @media (min-width: 901px) {
     .mobile-toggle { display: none; }
-    .desktop-nav { display: flex; } /* Mostra menu PC centralizado */
+    .desktop-nav { display: flex; }
     .mobile-nav { display: none !important; }
   }
 </style>
