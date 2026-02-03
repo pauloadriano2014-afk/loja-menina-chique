@@ -1,156 +1,159 @@
 <style>
-  .footer-full-width {
-    background-color: #000000;
-    color: #ffffff;
-    /* Hack para Fundo Infinito (Full Width) */
-    width: 100vw;
+  /* --- ESTRUTURA GERAL (Fundo Preto Infinito) --- */
+  .footer-global-wrapper {
+    background-color: #000;
+    color: #fff;
+    width: 100vw; /* Largura total da tela */
     position: relative;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+    border-top: 4px solid #FF1493; /* Linha Rosa */
+    margin-top: 60px;
     padding: 60px 0 30px;
-    margin-top: 50px;
-    border-top: 4px solid #FF1493; /* Linha Superior Rosa */
-    box-sizing: border-box;
+    box-sizing: border-box; /* Garante que o padding não estoure a tela */
   }
-  
-  .footer-inner {
+
+  /* Onde o conteúdo fica (Centralizado e limitado a 1200px) */
+  .footer-content-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
+    justify-content: space-between; /* Espalha as colunas no PC */
     flex-wrap: wrap;
-    justify-content: space-between;
     gap: 40px;
   }
-  
-  .footer-col { 
-    flex: 1; 
-    min-width: 250px; 
+
+  /* Colunas Individuais */
+  .footer-column {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha à esquerda no PC */
   }
-  
+
   /* Títulos */
-  .footer-col h3 { 
-    font-size: 18px; 
-    font-weight: bold; 
-    text-transform: uppercase; 
-    margin-bottom: 25px; 
-    color: #FF1493; 
+  .footer-column h3 {
+    color: #FF1493;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 20px;
     letter-spacing: 1px;
   }
-  
-  .footer-col p {
-    color: #cccccc;
+
+  /* Textos e Links */
+  .footer-column p {
+    color: #ccc;
     font-size: 14px;
     line-height: 1.6;
+    margin-bottom: 15px;
+    max-width: 300px; /* Evita linhas muito longas */
   }
 
-  .footer-col a { 
-    display: block; 
-    color: #cccccc; 
-    text-decoration: none; 
-    margin-bottom: 12px; 
-    font-size: 14px; 
-    transition: color 0.3s ease;
+  .footer-column a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+    display: block;
   }
-  
-  .footer-col a:hover { 
-    color: #FF1493; 
-    padding-left: 5px; 
-  }
-  
+  .footer-column a:hover { color: #FF1493; padding-left: 5px; }
+
   /* Botão WhatsApp */
-  .whatsapp-btn {
-    background-color: #25D366; 
+  .btn-whatsapp {
+    background: #25D366;
     color: #fff !important;
-    padding: 12px 20px;
-    border-radius: 50px; 
-    text-align: center;
+    padding: 12px 25px;
+    border-radius: 50px;
     font-weight: bold;
-    display: inline-flex !important;
-    align-items: center;
-    gap: 8px;
     text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
     margin-top: 10px;
-    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
-    transition: transform 0.2s ease;
   }
-  
-  .whatsapp-btn:hover {
-    background-color: #1ebc57;
+  .btn-whatsapp:hover {
+    background: #1ebc57;
     transform: scale(1.05);
+    padding-left: 25px; /* Anula efeito de link normal */
   }
 
-  /* Copyright */
-  .copy {
+  /* Direitos Autorais */
+  .footer-copyright {
     text-align: center;
     border-top: 1px solid #222;
     margin-top: 50px;
     padding-top: 20px;
     font-size: 12px;
-    color: #666;
+    color: #555;
   }
-  .copy strong { color: #fff; }
+  .footer-copyright strong { color: #fff; }
 
-  /* --- CORREÇÃO MOBILE (A Mágica acontece aqui) --- */
+  /* --- MÁGICA PARA CELULAR (Responsividade) --- */
   @media (max-width: 768px) {
-    .footer-inner {
-      flex-direction: column; /* Empilha um embaixo do outro */
-      gap: 40px; /* Espaço entre os blocos */
-      padding: 0 25px; /* Margem lateral segura */
-    }
-    
-    .footer-col {
-      min-width: 100%; /* Força ocupar a linha toda */
-      text-align: left; /* Garante alinhamento na esquerda */
-      flex: none;
+    .footer-content-container {
+      flex-direction: column; /* Empilha as colunas */
+      align-items: center;    /* Centraliza os blocos */
+      gap: 50px;
+      padding: 0 30px; /* Margem segura para não colar na borda */
     }
 
-    .footer-full-width {
-      padding-top: 40px; /* Menos espaço no topo para celular */
+    .footer-column {
+      align-items: center; /* Centraliza itens dentro da coluna */
+      text-align: center;  /* Centraliza o texto */
+      width: 100%;
     }
+
+    .footer-column p { max-width: 100%; }
     
-    .whatsapp-btn {
-      width: 100%; /* Botão grande no dedo */
-      justify-content: center;
-    }
+    .footer-column a:hover { padding-left: 0; color: #FF1493; } /* Tira o efeito de mover no celular */
+    
+    .btn-whatsapp { width: 100%; justify-content: center; } /* Botão largura total */
   }
 </style>
 
-<footer class="footer-full-width">
-  <div class="footer-inner">
-    <div class="footer-col">
+<footer class="footer-global-wrapper">
+  <div class="footer-content-container">
+    
+    <div class="footer-column">
       <h3>Menina Chique</h3>
       <p>Moda fitness premium em Mafra - SC.<br>Sua melhor versão começa aqui.</p>
     </div>
-    
-    <div class="footer-col">
+
+    <div class="footer-column">
       <h3>Atendimento</h3>
       <p>Precisa de ajuda com o tamanho?</p>
-      <a href="https://wa.me/5547999999999" target="_blank" class="whatsapp-btn">
+      <a href="https://wa.me/5547999999999" target="_blank" class="btn-whatsapp">
         <span>📱</span> Chamar no WhatsApp
       </a>
     </div>
 
-    <div class="footer-col">
+    <div class="footer-column">
       <h3>Links Rápidos</h3>
       <a href="/">Início</a>
       <a href="/collections/all">Todos os Produtos</a>
-      <a href="/search">Buscar</a>
+      <a href="/search">Rastrear Pedido</a>
       <a href="/policies/privacy-policy">Política de Privacidade</a>
     </div>
+
   </div>
-  
-  <div class="copy">
+
+  <div class="footer-copyright">
     &copy; {{ 'now' | date: "%Y" }} <strong>Menina Chique Mafra</strong>. Todos os direitos reservados.<br>
     Desenvolvido por Paulo Adriano.
   </div>
 </footer>
 
 {% schema %}
-{ 
-  "name": "Rodapé Full Width", 
-  "presets": [{ "name": "Rodapé Full Width" }] 
+{
+  "name": "Rodapé Oficial V2",
+  "settings": [],
+  "presets": [{ "name": "Rodapé Oficial V2" }]
 }
 {% endschema %}
